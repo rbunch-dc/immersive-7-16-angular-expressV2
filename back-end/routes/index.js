@@ -44,7 +44,20 @@ router.post('/addStudent', function(req, res, next){
 	// Save the student to mongodb
 	studentToAdd.save();
 	// Let the requester know that we added the student
-	res.json({message: "added"});
+	res.json({
+		message: "added", 
+		name: req.body.name
+	});
+});
+
+router.post("/removeStudent", function(req, res, index){
+	Student.find({name: req.query.student}).remove(function(error){
+		if(error){
+			console.log("ERROR removing!")
+		}else{
+			res.json({message:"removed"});
+		}
+	});
 });
 
 module.exports = router;

@@ -14,7 +14,9 @@
 <body ng-controller="searchController">
 
 	<div class="container">
+
 		<div class="row">
+			{{message}}
 			<form ng-submit="addStudent()" class="form-horizontal">
 				<div class="form-group">
 					<label class="new-name">New Student Name
@@ -26,6 +28,17 @@
 				</div>
 			</form>
 		</div>
+
+		<div class="row">
+			<ul>
+				<li ng-repeat="student in studentArray track by $index">
+					{{student.name}}		
+					<button class="btn btn-xs" ng-click="removeStudent($index, student)">X
+					</button>
+				</li>
+			</ul>
+		</div>
+
 	</div>
 
 </body>
